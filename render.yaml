@@ -1,0 +1,34 @@
+services:
+  # Node.js API + React frontend (existing MERN app)
+  - type: web
+    name: university-ai-chat
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      # URL of the FastAPI RAG backend. Set this in Render after creating the rag-backend service.
+      - key: RAG_API_URL
+        sync: false
+
+  # FastAPI RAG microservice (Python)
+  - type: web
+    name: rag-backend
+    env: python
+    plan: free
+    rootDir: rag-backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false

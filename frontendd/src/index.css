@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@layer utilities {
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 8s ease-in-out infinite;
+  }
+  .scrollbar-hidden {
+    /* Firefox */
+    scrollbar-width: none;
+    /* IE 10+ */
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    /* Chrome/Safari/WebKit */
+    display: none;
+  }
+
+  /* Dark scrollbar utility for horizontal/vertical scrollers */
+  .scrollbar-dark {
+    scrollbar-width: thin;            /* Firefox */
+    /* Lighter default thumb for better contrast in dark mode */
+    scrollbar-color: #3a3a3a transparent; /* thumb track */
+  }
+
+  /* Light theme scrollbar */
+  .scrollbar-light {
+    scrollbar-width: thin;            /* Firefox */
+    scrollbar-color: #b0b0b0 transparent; /* grey thumb on transparent track */
+  }
+  .scrollbar-dark::-webkit-scrollbar {
+    height: 8px; /* horizontal */
+    width: 8px;  /* vertical */
+    background: transparent;
+  }
+  .scrollbar-light::-webkit-scrollbar {
+    height: 8px; /* horizontal */
+    width: 8px;  /* vertical */
+    background: transparent;
+  }
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    /* Lighter default thumb for better contrast in dark mode */
+    background-color: #3a3a3a;
+    border-radius: 9999px;
+  }
+  .scrollbar-light::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0; /* grey thumb */
+    border-radius: 9999px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
+    /* Slightly lighter on hover to indicate interactivity */
+    background-color: #555555;
+  }
+  .scrollbar-light::-webkit-scrollbar-thumb:hover {
+    background-color: #9aa0a6; /* darker grey on hover */
+  }
+}
+
+/* Table styling improvements */
+@layer components {
+  .chat-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-family: Arial, sans-serif;
+    table-layout: fixed;
+  }
+  
+  .chat-table th,
+  .chat-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #374151;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  
+  .chat-table th {
+    background-color: #1f2937;
+    font-weight: 600;
+    color: #f9fafb;
+  }
+  
+  .chat-table td {
+    background-color: #111827;
+    color: #e5e7eb;
+  }
+  
+  .chat-table tr:hover td {
+    background-color: #1f2937;
+  }
+}
+
+/* Ensure assistant message lists render with proper spacing */
+@layer components {
+  .chat-message ul {
+    list-style: disc;
+    margin: 6px 0 10px;
+    padding-left: 1.25rem;
+  }
+  .chat-message li {
+    margin: 3px 0;
+    line-height: 1.55;
+  }
+  /* Ensure a clear gap after tables inside assistant messages */
+  .chat-message table {
+    margin-bottom: 1rem; /* one line gap below table */
+  }
+}
+
+/* Responsive tables: enable horizontal scroll on small screens */
+@media (max-width: 767px) {
+  .chat-message {
+    overflow-x: visible; /* don't scroll the whole message */
+  }
+  .chat-message table {
+    display: block; /* allow overflow on the element itself */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain; /* prevent scroll chaining to page */
+    touch-action: auto; /* allow both pan-x and pan-y so vertical scroll works */
+    width: auto; /* don't force page width based on table */
+  }
+  .chat-message th,
+  .chat-message td {
+    white-space: nowrap; /* avoid tall cells caused by wrapping */
+  }
+}
+
+/* Prevent iOS Safari zoom on input focus by ensuring >=16px font-size */
+@media (max-width: 480px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Dark theme color pass to match requested style */
+@layer components {
+  .chat-table {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-color: #374151 !important;
+  }
+  .chat-table th {
+    background-color: #4ccfa679 !important; /* emerald header */
+    color: #ffffff !important;
+    border-color: #374151 !important;
+  }
+  .chat-table td {
+    border-color: #374151 !important;
+    color: #ffffff !important;
+    background: #000000 !important;
+  }
+  .chat-table tr:nth-child(even) td {
+    background-color: #1a1a1a !important;
+  }
+  .chat-table tr:hover td {
+    background-color: #2a2a2a !important;
+  }
+  .chat-table a {
+    color: #60a5fa !important; /* blue links */
+  }
+}

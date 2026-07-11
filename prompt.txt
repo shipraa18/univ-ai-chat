@@ -1,0 +1,4 @@
+# if the cell item is not present then create a prompt according to the need
+# will specify the data types of the column or items like string/numericals/boolean
+# if specialization is not available then its cell will be empty in the column then create a prompt in such a way that it wont bother any response
+#

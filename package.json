@@ -1,0 +1,32 @@
+{
+  "name": "university-ai-chat",
+  "version": "1.0.0",
+  "description": "Online University Query Chat with AI",
+  "main": "server/index.js",
+  "scripts": {
+    "build": "cd frontendd && npm install && npm run build",
+    "start": "cd server && npm install && npm start",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd frontendd && npm run dev\"",
+    "install-all": "npm install && cd server && npm install && cd ../frontendd && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "ai",
+    "chat",
+    "education",
+    "university",
+    "online"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "tailwindcss": "^4.1.13"
+  }
+}
